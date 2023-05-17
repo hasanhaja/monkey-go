@@ -47,7 +47,12 @@ func testLetStatement(t *testing.T, s ast.Statement, name string) bool {
   }
 
   letStmt, ok := s.(*ast.LetStatement)
+
   if !ok {
+    t.Errorf("s not *ast.LetStatement. got=%T", s)
+  }
+
+  if letStmt.Name.Value != name {
     t.Errorf("letStmt.Name.Value not '%s'. got=%s", name, letStmt.Name.Value)
     return false
   }
